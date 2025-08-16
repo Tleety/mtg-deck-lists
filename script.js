@@ -54,15 +54,15 @@ class MTGDeckSubmitter {
             const deckContent = this.formatDeckFile(parsedDeck, formData);
 
             // Generate filename
-            const filename = this.generateFilename(formData.deckName, formData.format);
+            const filename = this.generateFilename(formData.deckName);
 
             // Submit to GitHub
             await this.submitToGitHub(formData.githubToken, filename, deckContent, formData);
 
             // Success!
             this.showMessage('success', 
-                `🎉 Deck submitted successfully! ` +
-                `<a href="https://github.com/${this.repoOwner}/${this.repoName}/blob/main/decks/${formData.format}/${filename}" target="_blank">View your deck</a>`
+                `🎉 Commander deck submitted successfully! ` +
+                `<a href="https://github.com/${this.repoOwner}/${this.repoName}/blob/main/decks/Commander/${filename}" target="_blank">View your deck</a>`
             );
 
             // Reset form
@@ -80,7 +80,7 @@ class MTGDeckSubmitter {
         return {
             githubToken: document.getElementById('github-token').value.trim(),
             deckName: document.getElementById('deck-name').value.trim(),
-            format: document.getElementById('format').value,
+            format: 'Commander', // Hardcoded to Commander format
             notes: document.getElementById('notes').value.trim(),
             decklist: document.getElementById('decklist').value.trim()
         };
@@ -97,10 +97,6 @@ class MTGDeckSubmitter {
 
         if (!formData.deckName) {
             errors.push('Deck name is required');
-        }
-
-        if (!formData.format) {
-            errors.push('Format selection is required');
         }
 
         if (!formData.decklist) {
@@ -201,7 +197,7 @@ class MTGDeckSubmitter {
 
         // Header with metadata
         content += `# ${formData.deckName}\n`;
-        content += `Format: ${formData.format}\n`;
+        content += `Format: Commander\n`;
         content += `Date: ${date}\n`;
         if (formData.notes) {
             content += `Notes: ${formData.notes}\n`;
@@ -225,7 +221,7 @@ class MTGDeckSubmitter {
         return content;
     }
 
-    generateFilename(deckName, format) {
+    generateFilename(deckName) {
         const date = new Date().toISOString().split('T')[0];
         const sanitizedName = deckName
             .toLowerCase()
@@ -238,7 +234,7 @@ class MTGDeckSubmitter {
     }
 
     async submitToGitHub(token, filename, content, formData) {
-        const path = `decks/${formData.format}/${filename}`;
+        const path = `decks/Commander/${filename}`;
         
         try {
             // Check if file already exists
@@ -260,7 +256,7 @@ class MTGDeckSubmitter {
 
             // Create or update the file
             const requestBody = {
-                message: `Add ${formData.format} deck: ${formData.deckName}`,
+                message: `Add Commander deck: ${formData.deckName}`,
                 content: btoa(unescape(encodeURIComponent(content))), // Base64 encode with UTF-8 support
                 ...(sha && { sha }) // Include sha if updating existing file
             };

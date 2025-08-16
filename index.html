@@ -13,7 +13,7 @@
     <div class="container">
         <header class="header">
             <h1>🎯 MTG Deck Lists</h1>
-            <p class="subtitle">Submit your MTGO decklists to the community repository</p>
+            <p class="subtitle">Submit your Commander decklists to the community repository</p>
         </header>
 
         <div class="main-content">
@@ -30,9 +30,10 @@
                 
                 <div class="format-example">
                     <h3>Expected Format:</h3>
-                    <pre>4 Lightning Bolt
-3 Counterspell
-2 Force of Will
+                    <pre>1 Atraxa, Praetors' Voice
+4 Sol Ring
+3 Command Tower
+2 Reflecting Pool
 
 Sideboard:
 3 Rest in Peace
@@ -71,25 +72,10 @@ Sideboard:
                 <form id="decklist-form">
                     <div class="input-group">
                         <label for="deck-name">Deck Name:</label>
-                        <input type="text" id="deck-name" placeholder="e.g., Mono Red Aggro" required>
+                        <input type="text" id="deck-name" placeholder="e.g., Atraxa Superfriends" required>
                     </div>
 
-                    <div class="input-group">
-                        <label for="format">Format:</label>
-                        <select id="format" required>
-                            <option value="">Select a format...</option>
-                            <option value="Standard">Standard</option>
-                            <option value="Modern">Modern</option>
-                            <option value="Legacy">Legacy</option>
-                            <option value="Vintage">Vintage</option>
-                            <option value="Commander">Commander</option>
-                            <option value="Pioneer">Pioneer</option>
-                            <option value="Historic">Historic</option>
-                            <option value="Pauper">Pauper</option>
-                            <option value="Limited">Limited</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
+
 
                     <div class="input-group">
                         <label for="notes">Notes/Description (optional):</label>
@@ -100,9 +86,10 @@ Sideboard:
                         <label for="decklist">MTGO Decklist:</label>
                         <textarea id="decklist" rows="15" placeholder="Paste your MTGO decklist here...
 
-4 Lightning Bolt
-3 Counterspell
-2 Force of Will
+1 Atraxa, Praetors' Voice
+1 Sol Ring
+1 Command Tower
+1 Reflecting Pool
 
 Sideboard:
 3 Rest in Peace
